@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("hello-app")
+        app = docker.build("k8s/hello-app")
     }
 
     stage('Test image') {
@@ -21,7 +21,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://harbor.localpref.io/k8s', 'harbor-credentials') {
+        docker.withRegistry('https://harbor.localpref.io', 'harbor-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
