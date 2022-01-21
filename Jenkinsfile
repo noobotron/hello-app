@@ -23,6 +23,7 @@ node {
     stage('Push image') {
         docker.withRegistry('https://harbor.localpref.io', 'harbor-credentials') {
             app.push("${env.BUILD_NUMBER}")
+            sh echo '"${env.BUILD_NUMBER}"'
             app.push("latest")
         }
     }
