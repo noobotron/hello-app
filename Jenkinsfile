@@ -21,7 +21,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://harbor.localpref.io', 'harbor-credentials') {
+        docker.withRegistry('https://harbor.localpref.io/k8s', 'harbor-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
